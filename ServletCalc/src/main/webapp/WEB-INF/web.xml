@@ -16,4 +16,84 @@
     <url-pattern>/calc</url-pattern>
   </servlet-mapping>
 
+  <!--存储cookie-->
+  <servlet>
+    <servlet-name>setcookie</servlet-name>
+    <servlet-class>SetCookieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>setcookie</servlet-name>
+    <url-pattern>/setcookie</url-pattern>
+  </servlet-mapping>
+
+  <!--读取cookie-->
+  <servlet>
+    <servlet-name>getcookie</servlet-name>
+    <servlet-class>GetCookieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getcookie</servlet-name>
+    <url-pattern>/getcookie</url-pattern>
+  </servlet-mapping>
+
+  <!--Session-->
+  <servlet>
+    <servlet-name>sess</servlet-name>
+    <servlet-class>SessionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sess</servlet-name>
+    <url-pattern>/sess</url-pattern>
+  </servlet-mapping>
+
+  <!--文件上传-->
+  <servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>MyUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+
+  <!--Hello-->
+  <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+
+  <!--定时刷新器-->
+  <servlet>
+    <servlet-name>refresh</servlet-name>
+    <servlet-class>RefreshServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>refresh</servlet-name>
+    <url-pattern>/ref</url-pattern>
+  </servlet-mapping>
+
+  <!--req常用信息-->
+  <servlet>
+    <servlet-name>myrequest</servlet-name>
+    <servlet-class>MyRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myrequest</servlet-name>
+    <url-pattern>/req</url-pattern>
+  </servlet-mapping>
+
+  <!--跳转-->
+  <servlet>
+    <servlet-name>location</servlet-name>
+    <servlet-class>LocationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>location</servlet-name>
+    <url-pattern>/local</url-pattern>
+  </servlet-mapping>
+
 </web-app>
