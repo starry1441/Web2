@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        function mysub(type) {
+            // 拿到控件 用户名
+            var username = jQuery("#username");
+            var password = jQuery("#password");
+            var password2 = jQuery("#password2");
+            //清空
+            if(type == 2) {
+                if(confirm("确认清空？")) {
+                    username.val("");
+                    password.val("");
+                    password2.val("");
+                }
+                return false;
+            }
+            //1. 非空效验
+            if(username.val().trim() == "") {
+                //用户名输入
+                alert("请输入用户名");
+                username.focus();
+                return false;
+            }
+            if(password.val().trim() == "") {
+                //密码输入
+                alert("请输入密码");
+                password.focus();
+                return false;
+            }
+            if(password2.val().trim() == "") {
+                //确认密码输入
+                alert("请输入确认密码");
+                password2.focus();
+                return false;
+            }
+            if(password.val() != password2.val()) {
+                //两次密码不一致
+                alert("两次密码不一致，请重新输入");
+                password.focus();
+                return false;
+            }
+
+            //2. 使用ajax请求后端接口
+            jQuery.getJSON("reg",{
+                "username":username.val(),
+                "password":password.val()
+            },function (data) {
+                //注册成功和失败
+                if((data != null && data.succ != null && data.succ == 1)){
+                    //注册成功
+                    alert("恭喜，注册成功");
+                }else {
+                    alert("抱歉，注册失败  "+data.msg);
+                }
+            })
+
+        }
+    </script>
+</head>
+<body>
+
+    <div style="text-align: center;margin-top: 70px">
+        <h1>注册功能</h1>
+        &nbsp用&nbsp户&nbsp名&nbsp：<input id="username" name="username" type="text"><p></p>
+        &nbsp密&nbsp&nbsp&nbsp&nbsp码&nbsp&nbsp：<input id="password" name="password" type="password"><p></p>
+        确认密码：<input id="password2" name="password2" type="password"><p></p>
+        <input type="button" value="提交" onclick="mysub(1)">
+        <input type="button" value="清空" onclick="mysub(2)">
+    </div>
+
+</body>
+</html>

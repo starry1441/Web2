@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        function mysub(type) {
+            var username = jQuery("#username");
+            var password = jQuery("#password");
+            if(type == 2) {
+                //清空操作
+                if(confirm("确认清空吗？")) {
+                    username.val("");
+                    password.val("");
+                }
+                return false;
+            }
+            //非空效验
+            if(username.val().trim() == "") {
+                //用户名
+                alert("请填写用户名");
+                username.focus();
+                return false;
+            }
+            if(password.val().trim() == "") {
+                //密码
+                alert("请填写密码");
+                password.focus();
+                return false;
+            }
+            //2. 请求后端，实现登录验证
+            jQuery.getJSON("login",{
+                "username":username.val(),
+                "password":password.val()
+            },function (data) {
+                //回调函数
+                if(data != null && data.succ == 1) {
+                    //alert("登录成功");
+                    location.href = "myartlist.html";
+                }else {
+                    alert("登录失败，"+data.msg);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div style="margin-top: 70px;text-align: center">
+        <h1>登录功能</h1>
+        用户名：<input id="username" name="username" type="text"><p></p>
+        &nbsp密&nbsp&nbsp码：<input id="password" name="password" type="password"><p></p>
+        <input value="登录" type="button" onclick="mysub(1)">
+        <input value="清空" type="button" onclick="mysub(2)">
+    </div>
+</body>
+</html>
