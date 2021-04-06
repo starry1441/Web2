@@ -96,7 +96,7 @@
     <url-pattern>/local</url-pattern>
   </servlet-mapping>
 
-  <!--跳转-->
+  <!--ajax版本计算器-->
   <servlet>
     <servlet-name>mycalc</servlet-name>
     <servlet-class>MyCalcServlet</servlet-class>
