@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        function mysub(type) {
+            //1. 通过输入的id获取值
+            var username = jQuery("#username");
+            var password = jQuery("#password");
+            var password2 = jQuery("#password2");
+            //2. 清空操作
+            if(type == 2) {
+                if(confirm("确认清空吗？")) {
+                    username.val("");
+                    password.val("");
+                    password2.val("");
+                    return false;
+                }
+            }
+            //3. 非空效验
+            if(username.val().trim() == "") {
+                //用户名为空
+                alert("请先输入用户名");
+                username.focus();
+                return false;
+            }
+            if(password.val().trim() == "") {
+                //密码为空
+                alert("请先输入密码");
+                password.focus();
+                return false;
+            }
+            if(password2.val().trim() == "") {
+                //确认密码为空
+                alert("请先输入确认密码");
+                password2.focus();
+                return false;
+            }
+            //两次密码不一致
+            if(password.val() != password2.val()) {
+                alert("两次密码不一致，请重新输入");
+                password.focus();
+                return false;
+            }
+
+            //4.获取后端响应结果
+            jQuery.getJSON("reg",
+                {"username":username.val(),
+                    "password":password.val(),
+                    "password2":password2.val()
+                },
+                function (data) {
+                    if(data != null && data.succ == 1) {
+                        //注册成功
+                        alert("恭喜你，注册成功")
+                    }else {
+                        //注册失败
+                        alert("抱歉，注册失败："+data.msg);
+                    }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div style="margin-top: 100px;text-align: center">
+        <h1>注册</h1>
+        &nbsp用&nbsp;户&nbsp;名&nbsp：<input id="username" name="username" type="text"><p></p>
+        &nbsp&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;：<input id="password" name="password" type="password"><p></p>
+        确认密码：<input id="password2" name="password2" type="password"><p></p>
+        <input type="button" value="提 交" onclick="mysub(1)">
+        <input type="button" value="清 空" onclick="mysub(2)">
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        function mysub(type) {
+            //1. 通过输入的id获取值
+            var username = jQuery("#username");
+            var password = jQuery("#password");
+            //2. 清空操作
+            if(type == 2) {
+                if(confirm("确认清空吗？")) {
+                    username.val("");
+                    password.val("");
+                    return false;
+                }
+            }
+            //3. 非空效验
+            if(username.val().trim() == "") {
+                //用户名为空
+                alert("请先输入用户名");
+                username.focus();
+                return false;
+            }
+            if(password.val().trim() == "") {
+                //密码为空
+                alert("请先输入密码");
+                password.focus();
+                return false;
+            }
+
+            jQuery.getJSON("login",{
+                "username":username.val(),
+                "password":password.val()
+            },function (data) {
+                if(data != null && data.succ == 1) {
+                    //登录成功
+                    //alert("恭喜，登录成功");
+                    location.href = "myarticle.html";
+                }else {
+                    alert("抱歉，登录失败："+data.msg);
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
+    <div style="margin-top: 100px;text-align: center">
+        <h1>登录</h1>
+        &nbsp;用&nbsp;户&nbsp;名&nbsp：<input id="username" name="username" type="text"><p></p>
+        &nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;：<input id="password" name="password" type="password"><p></p>
+        <input type="button" value="提 交" onclick="mysub(1)">
+        <input type="button" value="清 空" onclick="mysub(2)">
+    </div>
+</body>
+</html>
