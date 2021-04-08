@@ -47,8 +47,7 @@ public class RegServlet extends HttpServlet {
         //2. 进行业务处理
         UserInfoDao userInfoDao = new UserInfoDao();
         try {
-            userInfoDao.add(username,password);
-            succ = 1;
+            succ = userInfoDao.add(username,password);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
