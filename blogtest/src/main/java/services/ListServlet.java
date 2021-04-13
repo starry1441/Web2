@@ -1,6 +1,7 @@
 package services;
 
 import dao.ArticleInfoDao;
+import models.vo.ArticleInfoVO;
 import utils.ResultJSONUtils;
 
 import javax.servlet.ServletException;
@@ -11,17 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:删除文章
+ * Description:所有文章列表
  * User: starry
- * Date: 2021 -04 -08
- * Time: 16:46
+ * Date: 2021 -04 -13
+ * Time: 14:40
  */
 
-@WebServlet("/del")
-public class DelServlet extends HttpServlet {
+@WebServlet("/list")
+public class ListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,26 +33,27 @@ public class DelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int succ = -1; // succ=1 表示操作成功
-        String msg = "lala"; // 错误说明信息
+        String msg = ""; // 错误说明信息
+        List<ArticleInfoVO> list = null;
+
         // 1.从前端获取参数
-        int id = Integer.parseInt(request.getParameter("id"));
+        int page = Integer.parseInt(request.getParameter("page"));
+        int psize = Integer.parseInt(request.getParameter("psize"));
 
         // 2.调用数据库执行相应的业务逻辑
-        if(id > 0) {
-            ArticleInfoDao dao = new ArticleInfoDao();
-            try {
-                succ = dao.del(id);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }else {
-            msg = "非法操作，请先登录账号";
+        ArticleInfoDao dao = new ArticleInfoDao();
+        try {
+            list = dao.getAllArticleByPage(page,psize);
+            succ = 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
         // 3.将上一步操作的结果返回给前端
         HashMap<String, Object> result = new HashMap<>();
         result.put("succ", succ);
         result.put("msg", msg);
+        result.put("list",list);
         ResultJSONUtils.write(response, result);
     }
 }
