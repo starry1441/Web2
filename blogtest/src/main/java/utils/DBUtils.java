@@ -29,9 +29,9 @@ public class DBUtils {
         //第一次链接数据库
         if (dataSource == null){
             dataSource = new MysqlDataSource();
-            dataSource.setURL("jdbc:mysql://127.0.0.1:3306/blogtest?charactionEncoding=utf-8&useSSL=true");
+            dataSource.setURL("jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf-8");
             dataSource.setUser("root");
-            dataSource.setPassword("111111");
+            dataSource.setPassword("11111111");
         }
         return dataSource.getConnection();
     }

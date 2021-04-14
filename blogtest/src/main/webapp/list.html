@@ -46,7 +46,7 @@
 
             jQuery.getJSON("list",{
                 "page":page,    //当前页码数
-                "psize":2       //每页显示两条数据
+                "psize":6       //每页显示两条数据
             },function (data) {
                 if(data != null && data.succ == 1) {
                     //查询成功
@@ -56,7 +56,7 @@
 
                         html += "<tr>\n" +
                             "                <td>"+art.id+"</td>\n" +
-                            "                <td> <a href='detail.html?id="+art.id+"'>"+art.title+"</a></td>\n" +
+                            "                <td> <a href='listdetail.html?id="+art.id+"'>"+art.title+"</a></td>\n" +
                             "                <td>"+art.username+"</td>\n" +
                             "                <td>"+datefm(art.createtime)+"</td>\n" +
                             "                <td>"+art.rcount+"</td>\n" +
@@ -72,7 +72,10 @@
 </head>
 <body>
 
+    <a href="myarticle.html" style="font-size: 25px">返回我的文章</a>
+
     <div style="margin-top: 50px; text-align: center" >
+        <h1>全部文章列表</h1>
         <table id="tab" border="1" style="width: 80%" align="center">
             <tr>
                 <td>编号</td>
@@ -83,8 +86,8 @@
             </tr>
         </table>
         <p></p>
-        <a href="javascript:mypage(1)">上一页</a>
-        <a href="javascript:mypage(2)">下一页</a>
+        <a href="javascript:mypage(1)" style="font-size: 20px">上一页</a>
+        <a href="javascript:mypage(2)" style="font-size: 20px">下一页</a>
     </div>
 
 </body>

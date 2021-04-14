@@ -18,10 +18,12 @@
             return y+"-"+m+"-"+d;
         }
 
+
         jQuery(function () {
             var param = location.search;
             var id = parseInt(param.split("=")[1]);
 
+            //1.文章详情展示
             jQuery.getJSON("init",{
                 "id":id
             },function (data) {
@@ -35,12 +37,22 @@
                     alert("获取失败:"+data.msg);
                 }
             });
+
+            //2.访问数量改变
+            jQuery.getJSON("addcount",{
+                "id":id
+            },function (data) {
+
+            });
+
         });
     </script>
 </head>
 <body>
 
-<div style="margin-top: 50px;">
+<a href="myarticle.html" style="font-size: 20px">返回上一级</a>
+
+<div style="margin-top: 50px; width: 80%; margin-left: 100px">
     <h1 id="title">标题</h1>
     <div id="content"></div>
     <hr>

@@ -9,6 +9,7 @@
             //1. 通过输入的id获取值
             var username = jQuery("#username");
             var password = jQuery("#password");
+
             //2. 清空操作
             if(type == 2) {
                 if(confirm("确认清空吗？")) {
@@ -52,8 +53,33 @@
         <h1>登录</h1>
         &nbsp;用&nbsp;户&nbsp;名&nbsp：<input id="username" name="username" type="text"><p></p>
         &nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;：<input id="password" name="password" type="password"><p></p>
-        <input type="button" value="提 交" onclick="mysub(1)">
-        <input type="button" value="清 空" onclick="mysub(2)">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value=" 提 交 " onclick="mysub(1)">
+        <input type="button" value=" 清 空 " onclick="mysub(2)">
+        <input type="button" value=" 注 册 " onclick="location.href='reg.html'">
+        <p></p>
+        <br><br><br>
+        <a style="font-size: 20px">已有用户</a><br><br>
+        <table border="1" align="center">
+            <tr>
+                <td>信息\用户</td>
+                <td>用户1</td>
+                <td>用户2</td>
+                <td>用户3</td>
+            </tr>
+            <tr>
+                <td>用户名</td>
+                <td>xingxing</td>
+                <td>qiqi</td>
+                <td>duoduo</td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td>123</td>
+                <td>456</td>
+                <td>789</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

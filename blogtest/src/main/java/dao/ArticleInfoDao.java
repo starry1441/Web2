@@ -181,4 +181,21 @@ public class ArticleInfoDao {
         DBUtils.close(resultSet,statement,connection);
         return list;
     }
+
+    /**
+     * 访问量+1
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public int addCount(int id) throws SQLException {
+        int result = 0;
+        Connection connection = DBUtils.getConnection();
+        String sql = "update articleinfo set rcount=rcount+1 where id=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,id);
+        result = statement.executeUpdate();
+        DBUtils.close(null,statement,connection);
+        return result;
+    }
 }
